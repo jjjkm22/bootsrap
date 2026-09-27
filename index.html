@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="fi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Julian matkat</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f3eee4;
+        }
+
+        h1,
+        h2,
+        h3 {
+            color: #3f5142;
+        }
+
+        .carousel img {
+            height: 450px;
+            object-fit: cover;
+            border-radius: 15px;
+        }
+
+        .card {
+            border-radius: 15px;
+            overflow: hidden;
+            border: none;
+        }
+
+        .card img {
+            height: 220px;
+            object-fit: cover;
+        }
+
+        .btn-primary {
+            background-color: #c56f4a;
+            border-color: #c56f4a;
+        }
+
+        .btn-primary:hover {
+            background-color: #a95738;
+            border-color: #a95738;
+        }
+
+        .accordion-button:not(.collapsed) {
+            background-color: #d9c7ad;
+            color: #3f5142;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigaatio -->
+    <nav class="navbar navbar-expand-lg bg-dark navbar-dark" aria-label="Päänavigaatio">
+        <div class="container">
+
+            <!-- Sivuston nimi -->
+            <a class="navbar-brand" href="#">Julian matkat</a>
+
+            <!-- Hampurilaisvalikko -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Avaa navigaatio">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Navigaation linkit -->
+            <div class="collapse navbar-collapse" id="navbarNav">
+
+                <ul class="navbar-nav ms-auto">
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#etusivu">Etusivu</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#matkat">Matkani</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#kohteet">Kohteet</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#vinkit">Matkavinkit</a>
+                    </li>
+
+                </ul>
+
+            </div>
+        </div>
+    </nav>
+    <!-- Kuvakaruselli -->
+    <!-- Sivuston pääotsikko -->
+    <section class="container text-center py-5">
+
+        <h1>Julian matkaopas</h1>
+
+        <p class="lead">
+            Matkoja, luontoa ja erilaisia kulttuureja maailmalta.
+        </p>
+
+    </section>
+    <section id="etusivu" class="container py-5">
+
+        <div id="travelCarousel" class="carousel slide" data-bs-ride="carousel">
+
+            <!-- Karusellin kuvat -->
+            <div class="carousel-inner">
+
+                <!-- Ensimmäinen kuva -->
+                <div class="carousel-item active">
+                    <img src="images/Fiji.jpeg" class="d-block w-100" alt="Järvimaisema Nepalissa">
+                </div>
+
+                <!-- Toinen kuva -->
+                <div class="carousel-item">
+                    <img src="images/Laos.JPG" class="d-block w-100" alt="Maisema Laosissa">
+                </div>
+
+                <!-- Kolmas kuva -->
+                <div class="carousel-item">
+                    <img src="images/Nepal.jpeg" class="d-block w-100" alt="Trooppinen ranta">
+                </div>
+
+            </div>
+
+            <!-- Edellinen kuva -->
+            <button class="carousel-control-prev" type="button" data-bs-target="#travelCarousel" data-bs-slide="prev">
+
+                <span class="carousel-control-prev-icon"></span>
+
+                <span class="visually-hidden">Edellinen</span>
+            </button>
+
+            <!-- Seuraava kuva -->
+            <button class="carousel-control-next" type="button" data-bs-target="#travelCarousel" data-bs-slide="next">
+
+                <span class="carousel-control-next-icon"></span>
+
+                <span class="visually-hidden">Seuraava</span>
+            </button>
+
+        </div>
+
+    </section>
+    <!-- Matkakohteiden ruudukko -->
+    <section id="matkat" class="container py-5">
+
+        <h2 class="text-center mb-4">Matkani</h2>
+
+        <div class="row">
+
+            <!-- Nepal -->
+            <div class="col-md-4 mb-4">
+                <h3>Nepal</h3>
+
+                <p>
+                    Nepalissa ihastuin erityisesti upeisiin vuoristomaisemiin,
+                    luontoon ja paikalliseen kulttuuriin.
+                </p>
+            </div>
+
+            <!-- Laos -->
+            <div class="col-md-4 mb-4">
+                <h3>Laos</h3>
+
+                <p>
+                    Laosissa nautin rauhallisesta tunnelmasta, luonnosta
+                    ja paikallisista kylistä.
+                </p>
+            </div>
+
+            <!-- Fidži -->
+            <div class="col-md-4 mb-4">
+                <h3>Fidži</h3>
+
+                <p>
+                    Fidži tunnetaan upeista rannoistaan, kirkkaasta vedestään
+                    ja trooppisesta luonnostaan.
+                </p>
+            </div>
+
+        </div>
+
+    </section>
+    <!-- Matkakohteiden kortit -->
+    <section id="kohteet" class="container py-5">
+
+        <h2 class="text-center mb-4">Suosikkikohteeni</h2>
+
+        <div class="row">
+
+            <!-- Nepal-kortti -->
+            <div class="col-md-4 mb-4">
+
+                <div class="card h-100">
+
+                    <img src="images/Nepal.jpeg" class="card-img-top" alt="Järvimaisema Nepalissa">
+
+                    <div class="card-body">
+
+                        <h3 class="card-title">Nepal</h3>
+
+                        <p class="card-text">
+                            Nepal tarjoaa upeita vuoristomaisemia,
+                            luontoa ja mielenkiintoista kulttuuria.
+                        </p>
+
+                        <a href="#matkat" class="btn btn-primary">
+                            Lue lisää
+                        </a>
+
+                    </div>
+                </div>
+
+            </div>
+
+
+            <!-- Laos-kortti -->
+            <div class="col-md-4 mb-4">
+
+                <div class="card h-100">
+
+                    <img src="images/Laos.JPG" class="card-img-top" alt="Maisema Laosissa">
+
+                    <div class="card-body">
+
+                        <h3 class="card-title">Laos</h3>
+
+                        <p class="card-text">
+                            Laosissa viehättävät rauhallinen tunnelma,
+                            luonto ja paikallinen elämä.
+                        </p>
+
+                        <a href="#matkat" class="btn btn-primary">
+                            Lue lisää
+                        </a>
+
+                    </div>
+                </div>
+
+            </div>
+
+
+            <!-- Fidži-kortti -->
+            <div class="col-md-4 mb-4">
+
+                <div class="card h-100">
+
+                    <img src="images/Fiji.jpeg" class="card-img-top" alt="Trooppinen ranta Fidžillä">
+
+                    <div class="card-body">
+
+                        <h3 class="card-title">Fidži</h3>
+
+                        <p class="card-text">
+                            Fidži on tunnettu trooppisista rannoistaan,
+                            kirkkaasta vedestään ja kauniista luonnostaan.
+                        </p>
+
+                        <a href="#matkat" class="btn btn-primary">
+                            Lue lisää
+                        </a>
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+    <!-- Matkavinkit ja haitari -->
+    <section id="vinkit" class="container py-5">
+
+        <h2 class="text-center mb-4">Matkavinkit</h2>
+
+        <div class="accordion" id="travelAccordion">
+
+            <!-- Haitarin kohta 1 -->
+            <div class="accordion-item">
+
+                <h3 class="accordion-header">
+
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#tipOne"
+                        aria-expanded="true" aria-controls="tipOne">
+
+                        Miten suunnittelen matkan?
+                    </button>
+
+                </h3>
+
+                <div id="tipOne" class="accordion-collapse collapse show" data-bs-parent="#travelAccordion">
+
+                    <div class="accordion-body">
+                        Aloitan tutustumalla kohteeseen, sen kulttuuriin, turvallisuuteen
+                        ja poliittiseen tilanteeseen. Sen jälkeen tutkin
+                        majoituksia, kulkuyhteyksiä ja kiinnostavia paikkoja.
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Haitarin kohta 2 -->
+            <div class="accordion-item">
+
+                <h3 class="accordion-header">
+
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#tipTwo" aria-expanded="false" aria-controls="tipTwo">
+
+                        Miten säästän matkalla?
+                    </button>
+
+                </h3>
+
+                <div id="tipTwo" class="accordion-collapse collapse" data-bs-parent="#travelAccordion">
+
+                    <div class="accordion-body">
+                        Vertailen majoitusten ja kuljetusten hintoja etukäteen. Suosin julkista liikennettä ja
+                        paikallisia ravintoloita, sillä niissä voi säästää rahaa ja samalla kokea kohdetta aidommin.
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Haitarin kohta 3 -->
+            <div class="accordion-item">
+
+                <h3 class="accordion-header">
+
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#tipThree" aria-expanded="false" aria-controls="tipThree">
+
+                        Mitä pakkaan matkalle?
+                    </button>
+
+                </h3>
+
+                <div id="tipThree" class="accordion-collapse collapse" data-bs-parent="#travelAccordion">
+
+                    <div class="accordion-body">
+                        Pakkaan mukaan ainakin matkustusasiakirjat, kohteeseen sopivat vaatteet,
+                        lääkkeet, puhelimen ja tarvittavat laturit.
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+    <!-- Kohteiden vertailutaulukko -->
+    <section class="container py-5">
+
+        <h2 class="text-center mb-4">Kohteiden vertailu</h2>
+
+        <div class="table-responsive">
+
+            <table class="table table-striped table-hover">
+
+                <thead class="table-dark">
+
+                    <tr>
+                        <th scope="col">Kohde</th>
+                        <th scope="col">Luonto</th>
+                        <th scope="col">Rannat</th>
+                        <th scope="col">Kulttuuri</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <th scope="row">Nepal</th>
+                        <td>★★★★★</td>
+                        <td>★</td>
+                        <td>★★★★★</td>
+                    </tr>
+
+                    <tr>
+                        <th scope="row">Laos</th>
+                        <td>★★★★★</td>
+                        <td>★</td>
+                        <td>★★★★★</td>
+                    </tr>
+
+                    <tr>
+                        <th scope="row">Fidži</th>
+                        <td>★★★★</td>
+                        <td>★★★★★</td>
+                        <td>★★★★</td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+    <!-- Lisäominaisuus: Bootstrap Modal -->
+    <section class="container text-center py-4">
+
+        <h2>Yksi matkavinkki</h2>
+
+        <p>
+            Haluatko yhden vinkin seuraavaa matkaasi varten?
+        </p>
+
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#travelModal">
+            Näytä matkavinkki
+        </button>
+
+    </section>
+    <!-- Modal-ikkuna -->
+    <div class="modal fade" id="travelModal" tabindex="-1" aria-labelledby="travelModalLabel" aria-hidden="true">
+
+        <div class="modal-dialog">
+
+            <div class="modal-content">
+
+                <div class="modal-header">
+
+                    <h2 class="modal-title fs-5" id="travelModalLabel">
+                        Matkavinkki
+                    </h2>
+
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Sulje">
+                    </button>
+
+                </div>
+
+                <div class="modal-body">
+                    Älä yritä nähdä kaikkea yhdellä matkalla.
+                    Jätä aikaa myös spontaanille seikkailulle
+                    ja paikalliseen tunnelmaan tutustumiselle.
+                </div>
+
+                <div class="modal-footer">
+
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                        Sulje
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+    <!-- Alatunniste -->
+    <footer class="text-center py-4 mt-5 bg-dark text-white">
+
+        <p class="mb-1">
+            Julian matkat
+        </p>
+
+        <p class="mb-0">
+            Matkoja, luontoa ja kulttuureja maailmalta.
+        </p>
+
+    </footer>
+
+    <!-- Bootstrap JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
+    </script>
+
+</body>
+
+</html>
