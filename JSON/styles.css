@@ -1,0 +1,21 @@
+
+/* JSON-tehtävien sivun omat tyylit */
+
+body {
+    background-color: #f5f3ed;
+    color: #333333;
+    font-family: Arial, sans-serif;
+}
+
+h1 {
+    color: #286747;
+    margin-bottom: 20px;
+}
+
+main {
+    min-height: 70vh;
+}
+
+.navbar-brand {
+    font-weight: bold;
+}
