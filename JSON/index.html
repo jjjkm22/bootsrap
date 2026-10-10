@@ -1,0 +1,59 @@
+
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON-tehtävät</title>
+
+    <!-- Bootstrapin tyylit -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+
+    <!-- Oma tyylitiedosto -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Navigaatio -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-success">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">JSON-tehtävät</a>
+
+            <button class="navbar-toggler" type="button"
+                    data-bs-toggle="collapse" data-bs-target="#valikko"
+                    aria-controls="valikko" aria-expanded="false"
+                    aria-label="Avaa navigaatio">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="valikko">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="index.html">Koti</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="tietue.JSON">JSON-tietue</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Sivun sisältö -->
+    <main class="container py-5">
+        <h1>JSON-datan käsittelyä</h1>
+        <p>
+            Tällä sivulla harjoittelen JSON-muotoisen tiedon
+            käsittelyä ja hakemista JavaScriptillä.
+        </p>
+
+        <a href="tietue.JSON" class="btn btn-success">
+            Avaa JSON-tietue
+        </a>
+    </main>
+
+    <!-- Bootstrapin JavaScript navigaatiota varten -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
