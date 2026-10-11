@@ -33,42 +33,112 @@
     </p>
 
     <div id="nimi">Kirjoita laatikkoon Pokemonin nimi</div>
-    <p id="kuva2"></p>
+    <div id="kuva2"></div>
+
+    <div id="kaantoalue" hidden>
+        <button onclick="kaanna()">Käännä</button>
+    </div>
+
+    <div id="ominaisuudet"></div>
 
     <script>
+        let name = "";
+        let pokemon = null;
+        let kaannetty = false;
+
         function poke() {
             const pokeName = document.getElementById("pokemonName")
                 .value.toLowerCase().trim();
-            const name = document.getElementById("pokemonName").value;
 
             if (pokeName === "") {
                 document.getElementById("nimi").innerHTML =
                     "Kirjoita ensin Pokemonin nimi.";
                 document.getElementById("kuva2").innerHTML = "";
+                document.getElementById("kaantoalue").hidden = true;
+                document.getElementById("ominaisuudet").innerHTML = "";
                 return;
             }
 
-            fetch("https://pokeapi.co/api/v2/pokemon/" + pokeName)
+            name = pokeName;
+            document.getElementById("nimi").innerHTML = "Haetaan...";
+            document.getElementById("kuva2").innerHTML = "";
+            document.getElementById("kaantoalue").hidden = true;
+            document.getElementById("ominaisuudet").innerHTML = "";
+
+            fetch(`https://pokeapi.co/api/v2/pokemon/${pokeName}`)
                 .then(function (response) {
                     if (!response.ok) {
                         throw new Error("Pokemonia ei löytynyt.");
                     }
                     return response.json();
                 })
-                .then(function (obj) {
-                    document.getElementById("nimi").innerHTML =
-                        "<h2>" + name + "</h2>";
-
-                    document.getElementById("kuva2").innerHTML =
-                        "<img src='" + obj.sprites.front_default +
-                        "' alt='" + name +
-                        "' width='200'>";
+                .then(function (responseJson) {
+                    pokekuva(responseJson);
                 })
                 .catch(function () {
                     document.getElementById("nimi").innerHTML =
-                        "Pokemonia ei löytynyt. Tarkista nimi englanniksi.";
+                        "Tietoa ei pystytä hakemaan. Tarkista nimi.";
                     document.getElementById("kuva2").innerHTML = "";
+                    document.getElementById("kaantoalue").hidden = true;
+                    document.getElementById("ominaisuudet").innerHTML = "";
                 });
+        }
+
+        function pokekuva(obj) {
+            pokemon = obj;
+            kaannetty = false;
+
+            const pokeurl = obj.sprites.front_default;
+
+            document.getElementById("nimi").innerHTML =
+                "<h2>" + obj.name + "</h2>";
+
+            if (pokeurl) {
+                document.getElementById("kuva2").innerHTML =
+                    "<img src='" + pokeurl + "' alt='" +
+                    obj.name + "' width='200'>";
+            } else {
+                document.getElementById("kuva2").innerHTML =
+                    "Pokemonista ei löytynyt kuvaa.";
+            }
+
+            document.getElementById("kaantoalue").hidden = false;
+            document.getElementById("pokemonName").value = "";
+            document.getElementById("ominaisuudet").innerHTML = "";
+        }
+
+        function kaanna() {
+            if (!pokemon) {
+                return;
+            }
+
+            kaannetty = !kaannetty;
+
+            const pokeurl = kaannetty
+                ? pokemon.sprites.back_default
+                : pokemon.sprites.front_default;
+
+            if (pokeurl) {
+                document.getElementById("kuva2").innerHTML =
+                    "<img src='" + pokeurl + "' alt='" +
+                    pokemon.name + "' width='200'>";
+            } else {
+                document.getElementById("kuva2").innerHTML =
+                    "Pokemonista ei löytynyt tätä kuvakulmaa.";
+            }
+
+            if (kaannetty) {
+                document.getElementById("ominaisuudet").innerHTML =
+                    "<h3>Pokemonin ominaisuudet</h3>" +
+                    "<p><b>Korkeus:</b> " + pokemon.height / 10 +
+                    " m</p>" +
+                    "<p><b>Paino:</b> " + pokemon.weight / 10 +
+                    " kg</p>" +
+                    "<p><b>Kokemus:</b> " +
+                    pokemon.base_experience + "</p>";
+            } else {
+                document.getElementById("ominaisuudet").innerHTML = "";
+            }
         }
     </script>
 
