@@ -1,12 +1,17 @@
 
 {
   "otsikko": "JSON-datan käsittelyä",
+  "kuvaus": "Tällä opintojaksolla tutustutaan verkkosivujen toteutukseen ja tiedon hakemiseen.",
   "kuva": "https://jaakkola.github.io/json/digi.JPG",
+  "opintojakso": {
+    "nimi": "Digitekniikat",
+    "tunnus": "DIGI",
+    "opintopisteet": 5
+  },
   "sisalto": [
     "low-code",
     "sisällönhallintajärjestelmät",
     "resposiivinen käyttöliittymä ja komponentit",
     "tiedon haku julkisista palveluista rest-rajapinnan yli"
-  ],
-  "kuvaus": "Tutustun JSON-muotoisen tiedon käsittelyyn ja hakemiseen."
+  ]
 }
