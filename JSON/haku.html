@@ -1,0 +1,47 @@
+
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON-tiedon haku</title>
+</head>
+<body>
+    <h1>JSON-tiedon haku</h1>
+
+    <!-- Tähän tulostetaan haetut tiedot -->
+    <div id="vastaus"></div>
+
+    <script>
+        // Haetaan oma JSON-tietue GitHub Pagesista.
+        fetch("tietue.JSON")
+            // Muutetaan vastaus JavaScript-olioksi.
+            .then(function (response) {
+                return response.json();
+            })
+            // Välitetään JSON-tieto kerro-funktiolle.
+            .then(function (responseJson) {
+                kerro(responseJson);
+            })
+            // Näytetään virheilmoitus, jos haku epäonnistuu.
+            .catch(function (error) {
+                document.getElementById("vastaus").innerHTML =
+                    "<p>Tietoa ei pystytä hakemaan.</p>";
+            });
+
+        // Käsitellään haettu tieto ja näytetään se sivulla.
+        function kerro(data) {
+            document.getElementById("vastaus").innerHTML =
+                "<h2>" + data.otsikko + "</h2>" +
+                "<p>Sisältö:</p>" +
+                "<ul>" +
+                data.sisalto.map(function (asia) {
+                    return "<li>" + asia + "</li>";
+                }).join("") +
+                "</ul>" +
+                '<img src="' + data.kuva +
+                '" alt="JSON-tehtävän kuva" width="300">';
+        }
+    </script>
+</body>
+</html>
