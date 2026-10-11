@@ -1,61 +1,103 @@
-
+```html
 <!DOCTYPE html>
 <html lang="fi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Digitekniikat</title>
+    <title>Tehtävä 1 OSA II - Digitekniikat</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    
-<nav>
-    <a href="index.html">Etusivu</a> |
-    <a href="haku.html">Tehtävä 1</a> |
-    <a href="poke.html">Pokémon-haku</a> |
-    <a href="eevee.html">Eevee</a> |
-    <a href="saa.html">Sää</a> |
-    <a href="toteutus.html">Toteutus</a>
-</nav>
-<hr>
-    <div id="vastaus">Haetaan tietoja...</div>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-success mb-4">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">JSON-tehtävät</a>
+
+            <button class="navbar-toggler" type="button"
+                    data-bs-toggle="collapse" data-bs-target="#valikko"
+                    aria-controls="valikko" aria-expanded="false"
+                    aria-label="Avaa navigaatio">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="valikko">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Etusivu (Tehtävä 1 OSA I)</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="toteutus.html">Tehtävä 1 OSA II</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="poke.html">Poke haku (Tehtävä 2 OSA I)</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="eevee.html">Tehtävä 2 OSA II</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="saa.html">Tehtävä 3</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container py-3">
+        <div id="vastaus" class="text-center">
+            Haetaan tietoja...
+        </div>
+    </main>
 
     <script>
-        // Haetaan tiedot JSON-tiedostosta.
         fetch("./toteutus.JSON")
             .then(function (response) {
+                if (!response.ok) {
+                    throw new Error("JSON-tiedostoa ei löytynyt.");
+                }
                 return response.json();
             })
             .then(function (obj) {
-                let tiedot = "<h2>" + obj.nimi + "</h2>";
+                let tiedot = "<h1>" + obj.nimi + "</h1>";
 
-                tiedot += "<p>" + obj.osallistujien_lukumaara +
-                    " kpl</p>";
+                tiedot += "<p class='lead'>" +
+                    obj.osallistujien_lukumaara + " osallistujaa</p>";
 
-                // Näytetään osallistujien nimet vierekkäin.
-                tiedot += "<p>";
+                tiedot += "<h3>Osallistujat</h3><p>";
+
                 for (let i = 0; i < obj.osallistujat.length; i++) {
                     tiedot += obj.osallistujat[i];
+
                     if (i < obj.osallistujat.length - 1) {
                         tiedot += ", ";
                     }
                 }
+
                 tiedot += "</p>";
 
-                tiedot += "<p>" + obj.alkamisaika + " – " +
-                    obj.loppumisaika + "</p>";
-                tiedot += "<p>" + obj.kesto_viikkoina +
-                    " viikkoa</p>";
+                tiedot += "<p><strong>Alkamisaika:</strong> " +
+                    obj.alkamisaika + "</p>";
 
-                // Näytetään toteutuksen kuva.
-                tiedot += "<img src='" + obj.kuva +
-                    "' alt='Digitekniikat' width='300'>";
+                tiedot += "<p><strong>Loppumisaika:</strong> " +
+                    obj.loppumisaika + "</p>";
+
+                tiedot += "<p><strong>Kesto:</strong> " +
+                    obj.kesto_viikkoina + " viikkoa</p>";
+
+                tiedot += "<img class='img-fluid rounded mt-3' " +
+                    "src='" + obj.kuva +
+                    "' alt='Digitekniikat' style='max-width: 500px;'>";
 
                 document.getElementById("vastaus").innerHTML = tiedot;
             })
             .catch(function () {
                 document.getElementById("vastaus").innerHTML =
-                    "Tietojen hakeminen epäonnistui.";
+                    "<p>Tietojen hakeminen epäonnistui.</p>";
             });
     </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
+```
