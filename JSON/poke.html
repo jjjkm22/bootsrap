@@ -1,0 +1,77 @@
+```html
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokemon haku</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="container py-4">
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-success mb-4">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">JSON-tehtävät</a>
+            <div class="navbar-nav">
+                <a class="nav-link" href="index.html">Koti</a>
+                <a class="nav-link" href="haku.html">Tehtävä 1</a>
+                <a class="nav-link active" href="poke.html">Pokemon haku</a>
+                <a class="nav-link" href="saa.html">Sää</a>
+                <a class="nav-link" href="toteutus.html">Toteutus</a>
+            </div>
+        </div>
+    </nav>
+
+    <h1>Pokemon haku</h1>
+
+    <p>
+        <input type="text" id="pokemonName"
+               placeholder="Enter Pokemon name">
+        <button onclick="poke()">Hae</button>
+    </p>
+
+    <div id="nimi">Kirjoita laatikkoon Pokemonin nimi</div>
+    <p id="kuva2"></p>
+
+    <script>
+        function poke() {
+            const pokeName = document.getElementById("pokemonName")
+                .value.toLowerCase().trim();
+            const name = document.getElementById("pokemonName").value;
+
+            if (pokeName === "") {
+                document.getElementById("nimi").innerHTML =
+                    "Kirjoita ensin Pokemonin nimi.";
+                document.getElementById("kuva2").innerHTML = "";
+                return;
+            }
+
+            fetch("https://pokeapi.co/api/v2/pokemon/" + pokeName)
+                .then(function (response) {
+                    if (!response.ok) {
+                        throw new Error("Pokemonia ei löytynyt.");
+                    }
+                    return response.json();
+                })
+                .then(function (obj) {
+                    document.getElementById("nimi").innerHTML =
+                        "<h2>" + name + "</h2>";
+
+                    document.getElementById("kuva2").innerHTML =
+                        "<img src='" + obj.sprites.front_default +
+                        "' alt='" + name +
+                        "' width='200'>";
+                })
+                .catch(function () {
+                    document.getElementById("nimi").innerHTML =
+                        "Pokemonia ei löytynyt. Tarkista nimi englanniksi.";
+                    document.getElementById("kuva2").innerHTML = "";
+                });
+        }
+    </script>
+
+</body>
+</html>
+```
