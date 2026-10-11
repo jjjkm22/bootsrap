@@ -46,13 +46,15 @@
                 "Opintopisteet: " +
                 obj.opintojakso.opintopisteet + "<br>";
 
-            tiedot += "<h3>Aiheet</h3><ul>";
+        tiedot += "<h3>Aiheet</h3>";
 
-            obj.sisalto.forEach(function (aihe) {
-                tiedot += "<li>" + aihe + "</li>";
-            });
-
-            tiedot += "</ul>";
+for (var i = 0; i < obj.tekniikat.length; i++) {
+    tiedot += "<p>";
+    tiedot += "<b>Aihe: " + obj.tekniikat[i].aihe + "</b><br>";
+    tiedot += "<a href='" + obj.tekniikat[i].linkki + "'>" +
+        obj.tekniikat[i].linkki + "</a>";
+    tiedot += "</p>";
+}
 
             document.getElementById("vastaus").innerHTML = tiedot;
         }
