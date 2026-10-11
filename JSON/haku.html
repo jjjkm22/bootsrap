@@ -8,57 +8,54 @@
 </head>
 <body>
     <h1>JSON-tiedon haku</h1>
-
-    <!-- Tähän tulostetaan haetut tiedot -->
-    <div id="vastaus"></div>
+    <div id="vastaus">Haetaan tietoja...</div>
 
     <script>
-        // Haetaan oma JSON-tietue GitHub Pagesista.
-        fetch("tietue.JSON")
-            // Muutetaan vastaus JavaScript-olioksi.
+        // Haetaan JSON-tietue samasta kansiosta.
+        fetch("./tietue.JSON")
             .then(function (response) {
+                // Tarkistetaan, löytyikö tiedosto.
+                if (!response.ok) {
+                    throw new Error("JSON-tiedostoa ei löytynyt.");
+                }
                 return response.json();
             })
-            // Välitetään JSON-tieto kerro-funktiolle.
-            .then(function (responseJson) {
-                kerro(responseJson);
+            .then(function (obj) {
+                // Näytetään haetut tiedot.
+                kerro(obj);
             })
-            // Näytetään virheilmoitus, jos haku epäonnistuu.
             .catch(function (error) {
+                // Näytetään virhe sivulla ja konsolissa.
                 document.getElementById("vastaus").innerHTML =
-                    "<p>Tietoa ei pystytä hakemaan.</p>";
+                    "<p>Virhe tietojen haussa: " +
+                    error.message + "</p>";
+                console.error(error);
             });
 
-        // Käsitellään haettu tieto ja näytetään se sivulla.
-       
-function kerro(obj) {
-    // Haetaan otsikko ja kurssin kuvaus.
-    let tiedot = "<h1>" + obj.otsikko + "</h1><br>" +
-        obj.kuvaus + "<br><hr>";
+        // Muodostetaan sivulle tulostettava sisältö.
+        function kerro(obj) {
+            let tiedot = "<h2>" + obj.otsikko + "</h2>" +
+                "<p>" + obj.kuvaus + "</p><hr>";
 
-    // Lisätään kuva.
-    tiedot += "<p><img src='" + obj.kuva +
-        "' alt='Opintojakson kuva' width='300'></p>";
+            tiedot += "<p><img src='" + obj.ku +
+                "' alt='Opintojakson kuva' width='300'></p>";
 
-    // Lisätään opintojakson tiedot.
-    tiedot += "<h3>Opintojakso</h3>" +
-        "Nimi: " + obj.opintojakso.nimi + "<br>" +
-        "Tunnus: " + obj.opintojakso.tunnus + "<br>" +
-        "Opintopisteet: " + obj.opintojakso.opintopisteet + "<br>";
+            tiedot += "<h3>Opintojakso</h3>" +
+                "Nimi: " + obj.opintojakso.nimi + "<br>" +
+                "Tunnus: " + obj.opintojakso.tunnus + "<br>" +
+                "Opintopisteet: " +
+                obj.opintojakso.opintopisteet + "<br>";
 
-    // Lisätään aiheiden otsikko.
-    tiedot += "<h3>Aiheet</h3>";
+            tiedot += "<h3>Aiheet</h3><ul>";
 
-    // Näytetään aiheet listana.
-    tiedot += "<ul>";
-    obj.sisalto.forEach(function (aihe) {
-        tiedot += "<li>" + aihe + "</li>";
-    });
-    tiedot += "</ul>";
+            obj.sisalto.forEach(function (aihe) {
+                tiedot += "<li>" + aihe + "</li>";
+            });
 
-    // Tulostetaan valmis sisältö sivulle.
-    document.getElementById("vastaus").innerHTML = tiedot;
-}
-     </script>
+            tiedot += "</ul>";
+
+            document.getElementById("vastaus").innerHTML = tiedot;
+        }
+    </script>
 </body>
 </html>
