@@ -7,43 +7,42 @@
     <title>Digitekniikat</title>
 </head>
 <body>
-    <h1>Haaga-Helia – Digitekniikat</h1>
-
-    <div id="vastaus">Haetaan toteutuksen tietoja...</div>
+    <div id="vastaus">Haetaan tietoja...</div>
 
     <script>
-        // Haetaan toteutuksen tiedot JSON-tiedostosta.
+        // Haetaan tiedot JSON-tiedostosta.
         fetch("./toteutus.JSON")
             .then(function (response) {
                 return response.json();
             })
             .then(function (obj) {
-                // Muodostetaan tiedot verkkosivulle.
                 let tiedot = "<h2>" + obj.nimi + "</h2>";
 
-                tiedot += "<p>Osallistujien lukumäärä: " +
-                    obj.osallistujien_lukumaara + "</p>";
+                tiedot += "<p>" + obj.osallistujien_lukumaara +
+                    " kpl</p>";
 
-                tiedot += "<h3>Osallistujat</h3><ul>";
-
+                // Näytetään osallistujien nimet vierekkäin.
+                tiedot += "<p>";
                 for (let i = 0; i < obj.osallistujat.length; i++) {
-                    tiedot += "<li>" + obj.osallistujat[i] + "</li>";
+                    tiedot += obj.osallistujat[i];
+                    if (i < obj.osallistujat.length - 1) {
+                        tiedot += ", ";
+                    }
                 }
+                tiedot += "</p>";
 
-                tiedot += "</ul>";
-                tiedot += "<p>Alkamisaika: " + obj.alkamisaika + "</p>";
-                tiedot += "<p>Loppumisaika: " + obj.loppumisaika + "</p>";
-                tiedot += "<p>Kesto: " + obj.kesto_viikkoina +
+                tiedot += "<p>" + obj.alkamisaika + " – " +
+                    obj.loppumisaika + "</p>";
+                tiedot += "<p>" + obj.kesto_viikkoina +
                     " viikkoa</p>";
 
-                tiedot += "<h3>Toteutuksen kuva</h3>";
+                // Näytetään toteutuksen kuva.
                 tiedot += "<img src='" + obj.kuva +
-                    "' alt='Digitekniikat-opintojakson kuva' width='300'>";
+                    "' alt='Digitekniikat' width='300'>";
 
-                // Näytetään tiedot sivulla.
                 document.getElementById("vastaus").innerHTML = tiedot;
             })
-            .catch(function (error) {
+            .catch(function () {
                 document.getElementById("vastaus").innerHTML =
                     "Tietojen hakeminen epäonnistui.";
             });
