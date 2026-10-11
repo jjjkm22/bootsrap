@@ -50,35 +50,35 @@
                 }
                 return response.json();
             })
-            .then(function (obj) {
-                let tiedot = "<h1>" + obj.otsikko + "</h1>";
-                tiedot += "<p>" + obj.kuvaus + "</p>";
+     ```javascript
+.then(function (obj) {
+    let tiedot = "";
 
-                tiedot += "<p><img class='img-fluid rounded' src='" +
-                    obj.kuva +
-                    "' alt='Opintojakson kuva' style='max-width: 300px;'></p>";
+    tiedot += "<p><strong>Tunnus:</strong> " +
+        obj.opintojakso.tunnus + "</p>";
 
-                tiedot += "<h2>Opintojakso</h2>";
-                tiedot += "<p><strong>Nimi:</strong> " +
-                    obj.opintojakso.nimi + "<br>";
-                tiedot += "<strong>Tunnus:</strong> " +
-                    obj.opintojakso.tunnus + "<br>";
-                tiedot += "<strong>Opintopisteet:</strong> " +
-                    obj.opintojakso.opintopisteet + "</p>";
+    tiedot += "<p><strong>Opintopisteet:</strong> " +
+        obj.opintojakso.opintopisteet + "</p>";
 
-                tiedot += "<h2>Aiheet</h2>";
+    tiedot += "<p><img class='img-fluid rounded' src='" +
+        obj.kuva +
+        "' alt='Opintojakson kuva' style='max-width: 300px;'></p>";
 
-                for (let i = 0; i < obj.tekniikat.length; i++) {
-                    tiedot += "<p><strong>Aihe:</strong> " +
-                        obj.tekniikat[i].aihe + "<br>";
-                    tiedot += "<a href='" +
-                        obj.tekniikat[i].linkki +
-                        "' target='_blank' rel='noopener noreferrer'>" +
-                        obj.tekniikat[i].linkki + "</a></p>";
-                }
+    tiedot += "<h2>Aiheet</h2>";
 
-                document.getElementById("vastaus").innerHTML = tiedot;
-            })
+    for (let i = 0; i < obj.tekniikat.length; i++) {
+        tiedot += "<p><strong>Aihe: " +
+            obj.tekniikat[i].aihe + "</strong><br>";
+
+        tiedot += "<a href='" + obj.tekniikat[i].linkki +
+            "' target='_blank' rel='noopener noreferrer'>" +
+            obj.tekniikat[i].linkki + "</a></p>";
+    }
+
+    document.getElementById("vastaus").innerHTML = tiedot;
+})
+```
+
             .catch(function (error) {
                 document.getElementById("vastaus").innerHTML =
                     "<p>Tietojen hakeminen epäonnistui. Tarkista tietue.JSON-tiedosto.</p>";
