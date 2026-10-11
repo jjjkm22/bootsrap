@@ -1,0 +1,52 @@
+
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digitekniikat</title>
+</head>
+<body>
+    <h1>Haaga-Helia – Digitekniikat</h1>
+
+    <div id="vastaus">Haetaan toteutuksen tietoja...</div>
+
+    <script>
+        // Haetaan toteutuksen tiedot JSON-tiedostosta.
+        fetch("./toteutus.JSON")
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (obj) {
+                // Muodostetaan tiedot verkkosivulle.
+                let tiedot = "<h2>" + obj.nimi + "</h2>";
+
+                tiedot += "<p>Osallistujien lukumäärä: " +
+                    obj.osallistujien_lukumaara + "</p>";
+
+                tiedot += "<h3>Osallistujat</h3><ul>";
+
+                for (let i = 0; i < obj.osallistujat.length; i++) {
+                    tiedot += "<li>" + obj.osallistujat[i] + "</li>";
+                }
+
+                tiedot += "</ul>";
+                tiedot += "<p>Alkamisaika: " + obj.alkamisaika + "</p>";
+                tiedot += "<p>Loppumisaika: " + obj.loppumisaika + "</p>";
+                tiedot += "<p>Kesto: " + obj.kesto_viikkoina +
+                    " viikkoa</p>";
+
+                tiedot += "<h3>Toteutuksen kuva</h3>";
+                tiedot += "<img src='" + obj.kuva +
+                    "' alt='Digitekniikat-opintojakson kuva' width='300'>";
+
+                // Näytetään tiedot sivulla.
+                document.getElementById("vastaus").innerHTML = tiedot;
+            })
+            .catch(function (error) {
+                document.getElementById("vastaus").innerHTML =
+                    "Tietojen hakeminen epäonnistui.";
+            });
+    </script>
+</body>
+</html>
