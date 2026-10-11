@@ -8,10 +8,18 @@
     "tunnus": "DIGI",
     "opintopisteet": 5
   },
-  "sisalto": [
-    "low-code",
-    "sisällönhallintajärjestelmät",
-    "resposiivinen käyttöliittymä ja komponentit",
-    "tiedon haku julkisista palveluista rest-rajapinnan yli"
-  ]
+"tekniikat": [
+    {
+        "aihe": "low-code",
+        "linkki": "https://fi.wikipedia.org/wiki/Low-code"
+    },
+    {
+        "aihe": "Sisällönhallintajärjestelmät",
+        "linkki": "https://fi.wikipedia.org/wiki/Sis%C3%A4ll%C3%B6nhallintaj%C3%A4rjestelm%C3%A4"
+    },
+    {
+        "aihe": "Responsiivinen käyttöliittymä",
+        "linkki": "https://fi.wikipedia.org/wiki/Responsiivinen_verkkosuunnittelu"
+    }
+]
 }
