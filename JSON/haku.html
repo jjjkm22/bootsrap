@@ -30,18 +30,32 @@
             });
 
         // Käsitellään haettu tieto ja näytetään se sivulla.
-        function kerro(data) {
-            document.getElementById("vastaus").innerHTML =
-                "<h2>" + data.otsikko + "</h2>" +
-                "<p>Sisältö:</p>" +
-                "<ul>" +
-                data.sisalto.map(function (asia) {
-                    return "<li>" + asia + "</li>";
-                }).join("") +
-                "</ul>" +
-                '<img src="' + data.kuva +
-                '" alt="JSON-tehtävän kuva" width="300">';
-        }
-    </script>
-</body>
-</html>
+       
+function kerro(obj) {
+    // Haetaan otsikko ja kurssin kuvaus.
+    let tiedot = "<h1>" + obj.otsikko + "</h1><br>" +
+        obj.kuvaus + "<br><hr>";
+
+    // Lisätään kuva.
+    tiedot += "<p><img src='" + obj.kuva +
+        "' alt='Opintojakson kuva' width='300'></p>";
+
+    // Lisätään opintojakson tiedot.
+    tiedot += "<h3>Opintojakso</h3>" +
+        "Nimi: " + obj.opintojakso.nimi + "<br>" +
+        "Tunnus: " + obj.opintojakso.tunnus + "<br>" +
+        "Opintopisteet: " + obj.opintojakso.opintopisteet + "<br>";
+
+    // Lisätään aiheiden otsikko.
+    tiedot += "<h3>Aiheet</h3>";
+
+    // Näytetään aiheet listana.
+    tiedot += "<ul>";
+    obj.sisalto.forEach(function (aihe) {
+        tiedot += "<li>" + aihe + "</li>";
+    });
+    tiedot += "</ul>";
+
+    // Tulostetaan valmis sisältö sivulle.
+    document.getElementById("vastaus").innerHTML = tiedot;
+}
